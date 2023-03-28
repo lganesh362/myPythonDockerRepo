@@ -24,14 +24,19 @@ pipeline {
                 git branch: buildProps.BRANCH_NAME, credentialsId: buildProps.CRED, url: buildProps.git_url
             }
         }
-    
-       stage('Read Env Variable') {
+        stage('Push Docker image to ECR') {
             steps {
-                script {
-                    sh 'ls'
-                    }
-                }
-            }
+            withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+            sh '''docker build -t pycube-repo .
+
+            docker tag pycube-repo:latest 686509451139.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest
+
+            docker push 686509451139.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest'''
+        }
+    }
+}
+    
+   
         }
        
 
