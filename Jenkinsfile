@@ -1,7 +1,9 @@
 pipeline {
     agent any
   
-
+tools {
+      docker "docker"
+    }
     stages{
        stage('Check Env Variable') {
             steps {
