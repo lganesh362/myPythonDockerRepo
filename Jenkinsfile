@@ -28,7 +28,7 @@ pipeline {
        stage('Read Env Variable') {
             steps {
                 script {
-                    ls
+                    sh 'ls'
                     }
                 }
             }
