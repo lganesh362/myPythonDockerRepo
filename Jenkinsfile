@@ -2,12 +2,6 @@ pipeline {
     agent any
   
     stages{
-          stage('Initialize')
-    {
-        def dockerHome = tool 'docker'
-        def mavenHome  = tool 'maven'
-        env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
-    }
        stage('Check Env Variable') {
             steps {
                 script {
