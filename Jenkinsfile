@@ -5,7 +5,8 @@ pipeline {
      stage('Initialize'){
         steps {
                 def dockerHome = tool 'docker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"                }
+                env.PATH = "${dockerHome}/bin:${env.PATH}"                
+                }
         }
        stage('Check Env Variable') {
             steps {
@@ -32,9 +33,7 @@ pipeline {
             steps {
             withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
             sh '''docker build -t pycube-repo .
-
             docker tag pycube-repo:latest 686509451139.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest
-
             docker push 686509451139.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest'''
         }
     }
