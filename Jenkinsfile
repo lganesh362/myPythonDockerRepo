@@ -14,6 +14,7 @@ pipeline {
                 echo "${buildProps.BRANCH_NAME}"
                 echo "${buildProps.CRED}"
                 echo "${buildProps.git_url}"
+                echo "${buildProps.AWS_ACCOUNT_ID}"
                 }
               }
           }
@@ -29,7 +30,7 @@ pipeline {
             withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
             sh '''docker build -t pycube-repo .
 
-            docker tag pycube-repo:latest "${buildProps.AWS_ACCOUNT_ID}".dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest
+            docker tag pycube-repo:latest ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest
 
             docker push "${buildProps.AWS_ACCOUNT_ID}".dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest'''
         }
