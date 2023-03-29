@@ -40,7 +40,7 @@ pipeline {
             steps {
             withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
             sh '''docker pull 686509451139.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest
-            docker kill -f pythonapp
+            docker kill pythonapp
             docker run -itd -p 5000:5000 --name pythonapp 686509451139.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest'''
 
         }
