@@ -30,9 +30,9 @@ pipeline {
             withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
             sh '''docker build -t pycube-repo .
 
-            docker tag pycube-repo:latest 'buildProps.AWS_ACCOUNT_ID'.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest
+            docker tag pycube-repo:latest ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest
 
-            docker push 'buildProps.AWS_ACCOUNT_ID'.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest'''
+            docker push ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest'''
         }
     }
 }
@@ -40,9 +40,9 @@ pipeline {
         stage('Pull Docker image from ECR') {
             steps {
             withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-            sh '''docker pull "${buildProps.AWS_ACCOUNT_ID}".dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest
+            sh '''docker pull ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest
             docker rm -f pythonapp
-            docker run -itd -p 5000:5000 --name pythonapp "${buildProps.AWS_ACCOUNT_ID}".dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest'''
+            docker run -itd -p 5000:5000 --name pythonapp ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest'''
 
         }
     }
