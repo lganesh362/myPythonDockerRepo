@@ -24,6 +24,8 @@ pipeline {
         stage('Push Docker image to ECR') {
             steps {
             withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+            sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 686509451139.dkr.ecr.us-east-1.amazonaws.com"
+                
             sh "docker build -t pycube-repo ."
 
             sh "docker tag pycube-repo:latest ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:latest"
