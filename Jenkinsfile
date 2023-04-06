@@ -28,7 +28,7 @@ pipeline {
                 
             sh "docker build -t pycube-repo:(${env.BUILD_NUMBER}) ."
 
-            sh "docker tag pycube-repo:("{env.BUILD_NUMBER}) ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:(${env.BUILD_NUMBER})"
+            sh "docker tag pycube-repo:({env.BUILD_NUMBER}) ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:(${env.BUILD_NUMBER})"
 
             sh "docker push ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/pycube-repo:(${env.BUILD_NUMBER})"
         }
