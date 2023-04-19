@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'rpimage:latest' }
-    }  
+      agent { dockerfile true }  
 
     stages{
        stage('Check Env Variable') {
