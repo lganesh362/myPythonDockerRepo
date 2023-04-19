@@ -16,15 +16,15 @@ RUN apt-get install -y \
     && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
     && ./aws/install \
-    && python3 python3-pip \
     && rm -rf \
         awscliv2.zip \
     && apt-get -y purge curl \
     && apt-get -y purge unzip
 
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    apt-get install python3-setuptools \
-    apt-get install python3-pip \
+    apt-get install python3-setuptools
+    python3-pip \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
