@@ -21,7 +21,7 @@ RUN apt-get install -y \
     && apt-get -y purge curl \
     && apt-get -y purge unzip
 RUN apt-get autoclean
-RUN apt-get autoremove     
+RUN apt-get autoremove -y  
     
 
 
