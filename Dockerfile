@@ -20,6 +20,9 @@ RUN apt-get install -y \
         awscliv2.zip \
     && apt-get -y purge curl \
     && apt-get -y purge unzip
+RUN apt-get autoclean
+RUN apt-get autoremove     
+    
 
 
 
