@@ -22,7 +22,6 @@ RUN apt-get install -y \
     && apt-get -y purge unzip
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get install python3-setuptools
-    python3.5 \
     python3-pip \
     && \
     apt-get clean && \
