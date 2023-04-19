@@ -23,9 +23,6 @@ RUN apt-get install -y \
 RUN apt-get autoclean
 RUN apt-get autoremove -y  
     
-
-
-
 RUN apt-get install -y \
         python3 \
         python3-pip \
