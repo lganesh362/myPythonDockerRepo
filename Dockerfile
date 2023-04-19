@@ -22,9 +22,15 @@ RUN apt-get install -y \
     && apt-get -y purge unzip
 
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    apt-get install python3-setuptools \
-    python3-pip
+RUN apt-get update && \
+    apt-get install -y \
+        python3 \
+        python3-pip \
+        python3-setuptools \
+        groff \
+        less \
+    && pip3 install --upgrade pip \
+    && apt-get clean
 
 # install Python modules needed by the Python app
 COPY requirements.txt /usr/src/app/
